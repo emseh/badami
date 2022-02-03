@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<h2 class="text-center mt-4"><%= @article.title %></h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 mb-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          by
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@article.body) %></div>
+          <%= link_to 'Back', articles_path, class: 'btn btn-outline-success text-center ml-1' %>
+          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info" %>
+          <%= link_to 'Destroy', @article, class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+        <div class="card-footer text-muted">
+          <% if @article.created_at == @article.updated_at %>
+            <small><%= "Created #{time_ago_in_words(@article.created_at)} ago." %></small>
+          <% else %>
+            <small><%= "Created #{time_ago_in_words(@article.created_at)} ago, Updated #{time_ago_in_words(@article.updated_at)} ago" %></small>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
