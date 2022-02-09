@@ -2,7 +2,9 @@
 
 # app/controllers/users_controller.rb
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[edit update]
+  before_action :set_user, only: %i[show edit update]
+  def show; end
+
   def new
     @user = User.new
   end
