@@ -3,10 +3,9 @@
 # app/controller/articles_controller.rb
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
-
   # GET /articles or /articles.json
   def index
-    @articles = Article.order(title: :asc)
+    @articles = Article.paginate(page: params[:page], per_page: 2)
   end
 
   # GET /articles/1 or /articles/1.json

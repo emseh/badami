@@ -1,7 +1,5 @@
 @import 'bootstrap/scss/bootstrap';
 
-@import 'bootstrap/scss/bootstrap';
-
 .navbar {
   background-color: black !important;
 }
@@ -24,6 +22,7 @@
 }
 
 .jumbotron {
+  border-radius: 15px;
   background-image: asset-url('jumbotron.jpg');
   background-position: center center;
   background-repeat: no-repeat;
@@ -43,9 +42,37 @@ body {
   background-color: lightgrey;
 }
 
-// /* Other Classes for Page Styling */
+/* Other Classes for Page Styling */
 
 // body {
 //   background: #007bff;
 //   background: linear-gradient(to right, #0062E6, #33AEFF);
 // }
+
+/* Pagination styling */
+
+.apple_pagination {
+  text-align: center;
+  padding: 1em;
+  cursor: default; }
+  .apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; }
+  .apple_pagination .disabled {
+    color: #aaaaaa; }
+  .apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .apple_pagination a {
+    text-decoration: none;
+    color: black; }
+    .apple_pagination a:hover, .apple_pagination a:focus {
+      text-decoration: underline; }

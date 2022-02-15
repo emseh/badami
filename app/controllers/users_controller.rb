@@ -3,6 +3,11 @@
 # app/controllers/users_controller.rb
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+
+  def index
+    @users = User.order(id: :desc)
+  end
+
   def show; end
 
   def new
@@ -29,7 +34,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to articles_path, notice: 'Your account has successfully updated.' }
+        format.html { redirect_to @user, notice: 'Your account has successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

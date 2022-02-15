@@ -4,13 +4,16 @@
     <div class="col-8 mb-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
-          <%= "by #{@article.user.username if @article.user}" %>
+          <% if @article.user %>
+            by <%= link_to @article.user.username, @article.user, class: 'text-secondary' %>
+               <%= link_to gravatar_for(@article.user, option: 100), user_path(@article.user) %>
+          <% end %>
         </div>
         <div class="card-body">
           <div class="card-text text-left"><%= simple_format(@article.body) %></div>
-          <%= link_to 'Back', articles_path, class: 'btn btn-outline-success text-center ml-1' %>
-          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info" %>
-          <%= link_to 'Destroy', @article, class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Back', articles_path, class: 'btn btn-outline-success text-center rounded-pill ml-1' %>
+          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info rounded-pill" %>
+          <%= link_to 'Destroy', @article, class: "btn btn-outline-danger rounded-pill", method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
         <div class="card-footer text-muted">
           <% if @article.created_at == @article.updated_at %>
