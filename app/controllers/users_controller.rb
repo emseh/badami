@@ -5,10 +5,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @users = User.order(id: :desc)
+    @users = User.order(id: :desc).paginate(page: params[:page], per_page: 2)
   end
 
-  def show; end
+  def show
+    @articles = @user.articles.order(updated_at: :desc).paginate(page: params[:page], per_page: 2)
+  end
 
   def new
     @user = User.new

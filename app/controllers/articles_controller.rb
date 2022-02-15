@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   # GET /articles or /articles.json
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 2)
+    @articles = Article.order(updated_at: :desc).paginate(page: params[:page], per_page: 2)
   end
 
   # GET /articles/1 or /articles/1.json
