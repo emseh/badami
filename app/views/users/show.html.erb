@@ -2,14 +2,21 @@
   <h1 class="text-center mt-4"><%= "#{@user.username}'s Profile" %></h1>
   <%= gravatar_for @user, size: 150 %>
   <div class="text-center mt-4">
-    <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-outline-info rounded-pill" %>
+    <% if logged_in? and @user == current_user %>
+      <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-outline-info rounded-pill" %>
+    <% end %>
   </div>
   <h3 class="text-center mt-4">Article</h3>
   <div class="apple_pagination mb-4">
     <%= will_paginate @articles, :container => false %>
   </div>
-  <%= render 'articles/article', resource: @articles %>
-  <div class="apple_pagination mb-4">
-    <%= will_paginate @articles, :container => false %>
-  </div>
+  <% if @user.articles.present? %>
+    <%= render 'articles/article', resource: @articles %>
+    <div class="apple_pagination mb-4">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+  <% else %>
+    <h5 class="text-center text-secondary mt-4">This user isn't have an article!</h5>
+  <% end %>
+
 </div>

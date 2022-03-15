@@ -15,13 +15,34 @@
         </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'List articles', articles_path, class: 'dropdown-item' %>
-          <div class="dropdown-divider"></div>
-          <%= link_to 'Create new article', new_article_path, class: 'dropdown-item' %>
+          <% if logged_in? %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Create new article', new_article_path, class: 'dropdown-item' %>
+          <% end %>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Disabled</a>
-      </li>
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <%= current_user.admin? ? "👮🏻 - #{current_user.username.capitalize}" : current_user.username %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'View your profile', user_path(current_user), class: 'dropdown-item' %>
+            <%= link_to 'Edit your profile', edit_user_path(current_user), class: 'dropdown-item' %>
+            <div class="dropdown-divider"></div>            
+            <%= link_to "Delete profile", user_path(current_user), class: 'dropdown-item text-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Logout', logout_path, class: 'dropdown-item text-secondary', method: :delete %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Login', login_path, class: 'nav-link' %>
+        </li >
+        <li class="nav-item">
+          <%= link_to 'Sign up', sign_up_path, class: 'nav-link' %>
+        </li >
+      <% end %>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control rounded-pill mr-sm-2" type="search" placeholder="Search" aria-label="Search">

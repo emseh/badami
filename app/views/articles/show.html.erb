@@ -12,8 +12,10 @@
         <div class="card-body">
           <div class="card-text text-left"><%= simple_format(@article.body) %></div>
           <%= link_to 'Back', articles_path, class: 'btn btn-outline-success text-center rounded-pill ml-1' %>
-          <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info rounded-pill" %>
-          <%= link_to 'Destroy', @article, class: "btn btn-outline-danger rounded-pill", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+            <%= link_to 'Edit', edit_article_path(@article), class: "btn btn-outline-info rounded-pill" %>
+            <%= link_to 'Destroy', @article, class: "btn btn-outline-danger rounded-pill", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </div>
         <div class="card-footer text-muted">
           <% if @article.created_at == @article.updated_at %>
