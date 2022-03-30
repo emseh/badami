@@ -22,7 +22,8 @@
           </div>
         </div>
         <div class="form-group row justify-content-center">
-          <%= form.submit(@user.new_record? ? 'Sign Up' : 'Save', class: 'btn btn-primary btn-lg rounded-pill ml-1 mt-2') %>
+          <%= link_to 'Cancel', @user, class: 'btn btn-danger btn-lg rounded-pill text-center' %>
+          <%= form.submit(@user.new_record? ? 'Sign Up' : 'Save', class: 'btn btn-primary btn-lg rounded-pill ml-1') %>
         </div>
       <% end %>
     </div>

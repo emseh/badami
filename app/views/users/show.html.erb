@@ -8,15 +8,14 @@
   </div>
   <h3 class="text-center mt-4">Article</h3>
   <div class="apple_pagination mb-4">
-    <%= will_paginate @articles, :container => false %>
+    <%= will_paginate @user_articles, :container => false %>
   </div>
-  <% if @user.articles.present? %>
-    <%= render 'articles/article', resource: @articles %>
+  <% if @user_articles.present? %>
+    <%= render 'articles/article', resource: @user_articles %>
     <div class="apple_pagination mb-4">
-      <%= will_paginate @articles, :container => false %>
+      <%= will_paginate @user_articles, :container => false %>
     </div>
   <% else %>
     <h5 class="text-center text-secondary mt-4">This user isn't have an article!</h5>
   <% end %>
-
 </div>

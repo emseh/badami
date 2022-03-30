@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @articles = @user.articles.order(updated_at: :desc).paginate(page: params[:page], per_page: 5)
+    @user_articles = @user.articles.order(updated_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   def new

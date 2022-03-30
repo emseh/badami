@@ -1,0 +1,21 @@
+<div id="page-content">
+  <h1 class="text-center mt-4">Category: <%=@category.name %></h1>
+</div>
+
+  <div class="text-center mt-4">
+    <% if logged_in? and current_user.admin? %>
+      <%= link_to 'Edit category name', edit_category_path(@category), class: "btn btn-outline-info rounded-pill" %>
+    <% end %>
+  </div>
+  <h3 class="text-center mt-4">Articles</h3>
+  <div class="apple_pagination mb-4">
+    <%= will_paginate @category_articles, :container => false %>
+  </div>
+  <% if @category_articles.present? %>
+    <%= render 'articles/article', resource: @category_articles %>
+    <div class="apple_pagination mb-4">
+      <%= will_paginate @category_articles, :container => false %>
+    </div>
+  <% else %>
+    <h5 class="text-center text-secondary mt-4">This category isn't have an article!</h5>
+  <% end %>
